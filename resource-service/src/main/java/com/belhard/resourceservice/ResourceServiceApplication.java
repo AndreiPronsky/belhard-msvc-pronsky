@@ -1,13 +1,13 @@
-package com.belhard.microservices;
+package com.belhard.resourceservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class MicroservicesApplication {
+public class ResourceServiceApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(MicroservicesApplication.class, args);
+        SpringApplication.run(ResourceServiceApplication.class, args);
     }
 
 }

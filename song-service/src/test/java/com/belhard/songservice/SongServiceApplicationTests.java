@@ -1,10 +1,10 @@
-//package com.belhard.microservices;
+//package com.belhard.songservice;
 //
 //import org.junit.jupiter.api.Test;
 //import org.springframework.boot.test.context.SpringBootTest;
 //
 //@SpringBootTest
-//class MicroservicesApplicationTests {
+//class SongServiceApplicationTests {
 //
 //    @Test
 //    void contextLoads() {
