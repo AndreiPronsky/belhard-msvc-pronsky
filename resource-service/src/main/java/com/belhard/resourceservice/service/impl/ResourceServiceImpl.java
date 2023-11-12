@@ -3,9 +3,11 @@ package com.belhard.resourceservice.service.impl;
 import com.belhard.resourceservice.service.ResourceService;
 import com.belhard.resourceservice.service.dto.ResourceIdDto;
 import com.belhard.resourceservice.service.dto.ResourceIdsDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ResourceServiceImpl implements ResourceService {
 
     @Override
