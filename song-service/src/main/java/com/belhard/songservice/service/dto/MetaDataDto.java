@@ -1,4 +1,4 @@
-package com.belhard.resourceservice.service.dto;
+package com.belhard.songservice.service.dto;
 
 import lombok.Data;
 

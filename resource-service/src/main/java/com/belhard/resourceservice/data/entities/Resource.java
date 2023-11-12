@@ -20,6 +20,7 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Lob
     @Column(name = "audio")
     private byte[] audio;
 
