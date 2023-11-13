@@ -1,8 +1,8 @@
 package com.belhard.songservice.service;
 
 import com.belhard.songservice.service.dto.MetaDataDto;
-import com.belhard.songservice.service.dto.ResourceIdDto;
-import com.belhard.songservice.service.dto.ResourceIdsDto;
+import com.belhard.songservice.service.dto.SongIdDto;
+import com.belhard.songservice.service.dto.SongIdsDto;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ public interface SongService {
 
     MetaDataDto getById(Long id);
 
-    ResourceIdDto save(MetaDataDto metaDataDto);
+    SongIdDto save(MetaDataDto metaDataDto);
 
-    ResourceIdsDto deleteAllById(List<Long> idsToDelete);
+    SongIdsDto deleteAllById(List<Long> idsToDelete);
 }

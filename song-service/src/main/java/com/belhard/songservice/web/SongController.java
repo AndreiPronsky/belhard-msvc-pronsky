@@ -2,8 +2,8 @@ package com.belhard.songservice.web;
 
 import com.belhard.songservice.service.SongService;
 import com.belhard.songservice.service.dto.MetaDataDto;
-import com.belhard.songservice.service.dto.ResourceIdDto;
-import com.belhard.songservice.service.dto.ResourceIdsDto;
+import com.belhard.songservice.service.dto.SongIdDto;
+import com.belhard.songservice.service.dto.SongIdsDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,7 +18,7 @@ public class SongController {
     private final SongService songService;
 
     @PostMapping
-    public ResourceIdDto saveMetaData(MetaDataDto metaDataDto) {
+    public SongIdDto saveMetaData(@RequestBody MetaDataDto metaDataDto) {
         return songService.save(metaDataDto);
     }
 
@@ -28,7 +28,7 @@ public class SongController {
     }
 
     @DeleteMapping
-    public ResourceIdsDto deleteAllById(@RequestParam List<Long> ids){
+    public SongIdsDto deleteAllById(@RequestParam List<Long> ids){
         return songService.deleteAllById(ids);
     }
 }

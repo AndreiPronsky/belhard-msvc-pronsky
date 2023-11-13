@@ -3,6 +3,6 @@ package com.belhard.songservice.service.dto;
 import lombok.Data;
 
 @Data
-public class ResourceIdDto {
+public class SongIdDto {
     private Long id;
 }

@@ -5,6 +5,6 @@ import lombok.Data;
 import java.util.List;
 
 @Data
-public class ResourceIdsDto {
+public class SongIdsDto {
     private List<Long> ids;
 }
