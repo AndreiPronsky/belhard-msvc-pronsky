@@ -17,7 +17,7 @@ public class ResourceController {
 
     private final ResourceService resourceService;
 
-    @PostMapping
+    @PostMapping(consumes = "audio/mpeg")
     public ResourceIdDto upload(InputStream input) throws IOException {
         return resourceService.upload(input.readAllBytes());
     }

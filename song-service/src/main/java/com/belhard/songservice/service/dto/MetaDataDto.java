@@ -6,6 +6,8 @@ import java.util.Objects;
 
 @Data
 public class MetaDataDto {
+
+    private Long id;
     private String title;
     private String artist;
     private String album;
