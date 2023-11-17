@@ -13,7 +13,18 @@
 					"name": "Existing",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:7002/resources/1",
+							"host": [
+								"localhost"
+							],
+							"port": "7002",
+							"path": [
+								"resources",
+								"1"
+							]
+						}
 					},
 					"response": []
 				},
@@ -21,7 +32,18 @@
 					"name": "Not existing",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:7002/resources/100500",
+							"host": [
+								"localhost"
+							],
+							"port": "7002",
+							"path": [
+								"resources",
+								"100500"
+							]
+						}
 					},
 					"response": []
 				},
@@ -29,7 +51,18 @@
 					"name": "Wrong format",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [],
+						"url": {
+							"raw": "localhost:7002/resources/abc",
+							"host": [
+								"localhost"
+							],
+							"port": "7002",
+							"path": [
+								"resources",
+								"abc"
+							]
+						}
 					},
 					"response": []
 				},
@@ -45,11 +78,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:7000/resources",
+							"raw": "localhost:7002/resources",
 							"host": [
 								"localhost"
 							],
-							"port": "7000",
+							"port": "7002",
 							"path": [
 								"resources"
 							]
@@ -69,11 +102,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:7000/resources",
+							"raw": "localhost:7002/resources",
 							"host": [
 								"localhost"
 							],
-							"port": "7000",
+							"port": "7002",
 							"path": [
 								"resources"
 							]
@@ -93,11 +126,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:7000/resources",
+							"raw": "localhost:7002/resources",
 							"host": [
 								"localhost"
 							],
-							"port": "7000",
+							"port": "7002",
 							"path": [
 								"resources"
 							]
@@ -111,11 +144,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:7000/resources?id=1,2",
+							"raw": "localhost:7002/resources?id=1,2",
 							"host": [
 								"localhost"
 							],
-							"port": "7000",
+							"port": "7002",
 							"path": [
 								"resources"
 							],
@@ -135,11 +168,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:7000/resources?id=1,44",
+							"raw": "localhost:7002/resources?id=1,44",
 							"host": [
 								"localhost"
 							],
-							"port": "7000",
+							"port": "7002",
 							"path": [
 								"resources"
 							],
@@ -159,11 +192,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:7000/resources?id=1.44",
+							"raw": "localhost:7002/resources?id=1.44",
 							"host": [
 								"localhost"
 							],
-							"port": "7000",
+							"port": "7002",
 							"path": [
 								"resources"
 							],
@@ -183,16 +216,35 @@
 			"name": "Songs",
 			"item": [
 				{
+					"name": "Existing",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:7000/songs/1",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"songs",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Not Existing",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/songs/100500",
+							"raw": "localhost:7000/songs/100500",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs",
 								"100500"
@@ -202,24 +254,16 @@
 					"response": []
 				},
 				{
-					"name": "Existing",
-					"request": {
-						"method": "GET",
-						"header": []
-					},
-					"response": []
-				},
-				{
 					"name": "Wrong format",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/songs/a",
+							"raw": "localhost:7000/songs/a",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs",
 								"a"
@@ -243,11 +287,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/songs",
+							"raw": "localhost:7000/songs",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs"
 							]
@@ -256,7 +300,7 @@
 					"response": []
 				},
 				{
-					"name": "New Request",
+					"name": "Null fields",
 					"request": {
 						"method": "POST",
 						"header": [],
@@ -270,11 +314,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/songs",
+							"raw": "localhost:7000/songs",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs"
 							]
@@ -297,11 +341,11 @@
 							}
 						},
 						"url": {
-							"raw": "localhost:8080/songs",
+							"raw": "localhost:7000/songs",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs"
 							]
@@ -315,18 +359,18 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/songs?id=1,13",
+							"raw": "localhost:7000/songs?id=1,2",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs"
 							],
 							"query": [
 								{
 									"key": "id",
-									"value": "1,13"
+									"value": "1,2"
 								}
 							]
 						}
@@ -339,11 +383,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/songs?id=1,100500",
+							"raw": "localhost:7000/songs?id=1,100500",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs"
 							],
@@ -363,11 +407,11 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "localhost:8080/songs?id=.00500",
+							"raw": "localhost:7000/songs?id=.00500",
 							"host": [
 								"localhost"
 							],
-							"port": "8080",
+							"port": "7000",
 							"path": [
 								"songs"
 							],
