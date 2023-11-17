@@ -28,7 +28,7 @@ public class ResourceController {
     }
 
     @DeleteMapping
-    public ResourceIdsDto delete(@RequestParam List<Long> ids) {
-        return resourceService.delete(ids);
+    public ResourceIdsDto delete(@RequestParam List<Long> id) {
+        return resourceService.delete(id);
     }
 }

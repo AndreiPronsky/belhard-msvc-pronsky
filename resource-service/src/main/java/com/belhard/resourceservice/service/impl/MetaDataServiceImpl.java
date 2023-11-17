@@ -39,7 +39,8 @@ public class MetaDataServiceImpl implements MetaDataService {
         metaDataDto.setTitle(metadata.get("dc:title"));
         metaDataDto.setArtist(metadata.get("xmpDM:artist"));
         metaDataDto.setAlbum(metadata.get("xmpDM:album"));
-        metaDataDto.setYear(Integer.valueOf(metadata.get("xmpDM:releaseDate")));
+        String releaseDate = metadata.get("xmpDM:releaseDate");
+        metaDataDto.setYear(releaseDate == null ? null : Integer.parseInt(releaseDate));
         metaDataDto.setLength(getPrettyDuration(metadata.get("xmpDM:duration")));
         return metaDataDto;
     }

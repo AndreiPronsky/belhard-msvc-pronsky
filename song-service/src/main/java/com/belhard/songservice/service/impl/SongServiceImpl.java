@@ -27,7 +27,9 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public SongIdDto save(MetaDataDto metaDataDto) {
-        Long id = repository.save(mapper.toEntity(metaDataDto)).getId();
+        Long id = metaDataDto.getResourceId();
+        metaDataDto.setId(id);
+        repository.save(mapper.toEntity(metaDataDto));
         return mapper.toDto(id);
     }
 

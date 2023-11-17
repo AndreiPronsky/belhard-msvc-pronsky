@@ -21,7 +21,7 @@ public class ExceptionResolver {
 
     @ExceptionHandler
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public void notFound(NoSuchElementException e) {
+    public void notFound(IllegalArgumentException e) {
         log.error("Element not found", e);
     }
 

@@ -28,7 +28,7 @@ public class SongController {
     }
 
     @DeleteMapping
-    public SongIdsDto deleteAllById(@RequestParam List<Long> ids) {
-        return songService.deleteAllById(ids);
+    public SongIdsDto deleteAllById(@RequestParam List<Long> id) {
+        return songService.deleteAllById(id);
     }
 }
