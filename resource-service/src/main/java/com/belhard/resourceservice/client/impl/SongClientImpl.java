@@ -23,7 +23,7 @@ public class SongClientImpl implements SongClient {
     @Value("http://localhost:7000/songs")
     private String songServiceUrl;
 
-    @Value("resources?id=")
+    @Value("?id=")
     private String endpoint;
 
     @Override
