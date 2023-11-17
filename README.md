@@ -88,3 +88,83 @@ Response
     200 - OK
     
     500 - Internal server error
+
+### Song-service
+
+POST /songs
+
+Create a new song metadata record in the database.
+
+Request
+* Body example:  
+{  
+"name": "We are the champions",  
+"artist": "Queen",  
+"album": "News of the world",  
+"length": "2:59",  
+"resourceId": "123",  
+"year": "1977"   
+}
+
+
+* Description: Song metadata record, referencing to resource id (mp3 file itself)
+* Restriction: MP3 audio data
+
+Response
+* Body: { "id":11 }
+* Description: integer id - ID of the created song metadata
+* Codes:
+
+  200 - OK
+
+  400 - Song metadata missing validation error
+
+  500 - Internal server error
+
+
+GET /songs/{id}
+
+Get song metadata.
+
+Request
+* Parameter: integer id
+* Description: ID of song metadata to get
+* Restriction: ID of an existing song metadata
+
+Response
+* Body:   
+  {  
+  "name": "We are the champions",  
+  "artist": "Queen",  
+  "album": "News of the world",  
+  "length": "2:59",  
+  "resourceId": "123",  
+  "year": "1977"   
+  }
+
+
+* Codes:
+
+  200 - OK
+
+  404 - Song metadata with such id doesn't exist
+
+  500 - Internal server error
+
+
+DELETE /songs?id=1,2
+
+Delete song metadata by id. Ignore not existing song metadata.
+
+Request
+* Parameter: String id
+* Description: Comma separated values of song metadata IDs to remove
+
+Response
+* Body: { "ids": [1,2] }
+* Description: Integer [] ids - IDs of the deleted song metadata
+* Codes:
+
+  200 - OK
+
+  500 - Internal server error
