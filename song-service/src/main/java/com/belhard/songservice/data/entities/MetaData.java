@@ -22,7 +22,7 @@ public class MetaData {
     @Column(name = "artist")
     private String artist;
 
-    @Column(name = "albumn")
+    @Column(name = "album")
     private String album;
 
     @Column(name = "length")

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 @Transactional
@@ -37,7 +38,7 @@ public class ResourceServiceImpl implements ResourceService {
     @Override
     public byte[] download(Long id) {
         return resourceRepository.findById(id)
-                .orElseThrow()
+                .orElseThrow(NoSuchElementException::new)
                 .getAudio();
     }
 
