@@ -1,5 +1,5 @@
 server:
-  port: 7000
+  port: 8080
 spring:
   jpa:
     database: POSTGRESQL
@@ -9,5 +9,5 @@ spring:
   datasource:
     password: root
     username: postgres
-    url: jdbc:postgresql://localhost:7001/songs
+    url: jdbc:postgresql://localhost:5432/songs
     driver-class-name: org.postgresql.Driver
