@@ -12,4 +12,4 @@ spring:
     url: jdbc:postgresql://resource-service-db:5432/resources
     driver-class-name: org.postgresql.Driver
 clients:
-  song-service: http://song-service:7000
+  song-service: http://song-service:8080/songs
