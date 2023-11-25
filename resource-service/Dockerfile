@@ -4,19 +4,13 @@ FROM amazoncorretto:17-alpine3.18 as JAR_EXTRACT
 WORKDIR /project
 
 # copy the packaged jar file into our docker image
-COPY build/libs/resource-service-0.0.1-SNAPSHOT.jar /project
+COPY build/libs/app.jar /project
 
 # extract jar file
-RUN java -Djarmode=layertools -jar resource-service-0.0.1-SNAPSHOT.jar extract
+RUN java -Djarmode=layertools -jar app.jar extract
 
 FROM amazoncorretto:17-alpine3.18
 WORKDIR /application
-
-# specify container directory for DB data storage
-VOLUME var/lib/postgresql/data
-
-# expose required ports
-EXPOSE 8080
 
 # every copy command is creating new layer in the image
 COPY --from=JAR_EXTRACT /project/dependencies/. /application/.

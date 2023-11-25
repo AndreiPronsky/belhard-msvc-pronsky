@@ -5,9 +5,9 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
   datasource:
     password: root
     username: postgres
-    url: jdbc:postgresql://localhost:5432/songs
+    url: jdbc:postgresql://song-service-db:5432/songs
     driver-class-name: org.postgresql.Driver
