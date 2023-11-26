@@ -1,0 +1,49 @@
+version: "3.8"
+services:
+  resource-service:
+    build: resource-service
+    ports:
+      - "7002:${RESOURCE_SERVICE_SERVER_PORT}"
+    depends_on:
+      - resource-service-db
+    restart: always
+  song-service:
+    build: song-service
+    ports:
+      - "7000:${SONG_SERVICE_SERVER_PORT}"
+    depends_on:
+      - song-service-db
+    restart: always
+  resource-service-db:
+    image: postgres
+    environment:
+      - RESOURCE_SERVICE_SERVER_PORT=${RESOURCE_SERVICE_SERVER_PORT}
+      - RESOURCE_SERVICE_DB_PASSWORD=${RESOURCE_SERVICE_DB_PASSWORD}
+      - RESOURCE_SERVICE_DB_USERNAME=${RESOURCE_SERVICE_DB_USERNAME}
+      - RESOURCE_SERVICE_DB_URL=${RESOURCE_SERVICE_DB_URL}
+      - SONG_SERVICE_URL=${SONG_SERVICE_URL}
+    expose:
+      - ${RESOURCE_SERVICE_DB_PORT}
+    volumes:
+      - ${RESOURCE_SERVICE_DB_VOLUME}
+    restart: always
+  song-service-db:
+    image: postgres
+    environment:
+      - SONG_SERVICE_SERVER_PORT=${SONG_SERVICE_SERVER_PORT}
+      - SONG_SERVICE_DB_PASSWORD=${SONG_SERVICE_DB_PASSWORD}
+      - SONG_SERVICE_DB_USERNAME=${SONG_SERVICE_DB_USERNAME}
+      - SONG_SERVICE_DB_URL=${SONG_SERVICE_DB_URL}
+    expose:
+      - ${SONG_SERVICE_DB_PORT}
+    volumes:
+      - ${SONG_SERVICE_DB_VOLUME}
+    restart: always
+  localstack:
+    image: localstack/localstack
+    expose:
+      - "4566"
+    restart: always
+volumes:
+  resource-service-db:
+  song-service-db:
