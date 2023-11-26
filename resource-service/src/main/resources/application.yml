@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: ${RESOURCE_SERVICE_SERVER_PORT}
 spring:
   jpa:
     database: POSTGRESQL
@@ -7,9 +7,9 @@ spring:
     hibernate:
       ddl-auto: update
   datasource:
-    password: root
-    username: postgres
-    url: jdbc:postgresql://resource-service-db:5432/resources
+    password: ${RESOURCE_SERVICE_DB_PASSWORD}
+    username: ${RESOURCE_SERVICE_DB_USERNAME}
+    url: ${RESOURCE_SERVICE_DB_URL}
     driver-class-name: org.postgresql.Driver
 clients:
-  song-service: http://song-service:8080/songs
+  song-service: ${SONG_SERVICE_URL}

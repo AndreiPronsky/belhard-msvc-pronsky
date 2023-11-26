@@ -3,33 +3,47 @@ services:
   resource-service:
     build: resource-service
     ports:
-      - "7002:8080"
+      - "7002:${RESOURCE_SERVICE_SERVER_PORT}"
     depends_on:
       - resource-service-db
+    restart: always
   song-service:
     build: song-service
     ports:
-      - "7000:8080"
+      - "7000:${SONG_SERVICE_SERVER_PORT}"
     depends_on:
       - song-service-db
+    restart: always
   resource-service-db:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=resources
+      - RESOURCE_SERVICE_SERVER_PORT=${RESOURCE_SERVICE_SERVER_PORT}
+      - RESOURCE_SERVICE_DB_PASSWORD=${RESOURCE_SERVICE_DB_PASSWORD}
+      - RESOURCE_SERVICE_DB_USERNAME=${RESOURCE_SERVICE_DB_USERNAME}
+      - RESOURCE_SERVICE_DB_URL=${RESOURCE_SERVICE_DB_URL}
+      - SONG_SERVICE_URL=${SONG_SERVICE_URL}
     expose:
-      - "5432"
+      - ${RESOURCE_SERVICE_DB_PORT}
     volumes:
-      - resource-service-db:/var/lib/postgresql/data
+      - ${RESOURCE_SERVICE_DB_VOLUME}
+    restart: always
   song-service-db:
     image: postgres
     environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=songs
+      - SONG_SERVICE_SERVER_PORT=${SONG_SERVICE_SERVER_PORT}
+      - SONG_SERVICE_DB_PASSWORD=${SONG_SERVICE_DB_PASSWORD}
+      - SONG_SERVICE_DB_USERNAME=${SONG_SERVICE_DB_USERNAME}
+      - SONG_SERVICE_DB_URL=${SONG_SERVICE_DB_URL}
     expose:
-      - "5432"
+      - ${SONG_SERVICE_DB_PORT}
     volumes:
-      - song-service-db:/var/lib/postgresql/data
+      - ${SONG_SERVICE_DB_VOLUME}
+    restart: always
+  localstack:
+    image: localstack/localstack
+    expose:
+      - "4566"
+    restart: always
 volumes:
   resource-service-db:
   song-service-db:
