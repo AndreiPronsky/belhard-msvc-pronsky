@@ -5,7 +5,7 @@ spring:
     database: POSTGRESQL
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create-drop
   datasource:
     password: ${RESOURCE_SERVICE_DB_PASSWORD}
     username: ${RESOURCE_SERVICE_DB_USERNAME}

@@ -9,11 +9,14 @@ services:
     restart: always
   song-service:
     build: song-service
-    ports:
-      - "7000:${SONG_SERVICE_SERVER_PORT}"
+    expose:
+    - "8080"
     depends_on:
       - song-service-db
     restart: always
+    deploy:
+      mode: replicated
+      replicas: 3
   resource-service-db:
     image: postgres
     environment:

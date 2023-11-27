@@ -10,9 +10,9 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface ResourceMapper {
 
-    default Resource toEntity(byte[] bytes) {
+    default Resource toEntity(String location) {
         Resource resource = new Resource();
-        resource.setAudio(bytes);
+        resource.setLocation(location);
         return resource;
     }
 
