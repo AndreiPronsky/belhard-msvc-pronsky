@@ -41,8 +41,13 @@ services:
     restart: always
   localstack:
     image: localstack/localstack
+    environment:
+      - S3_URL=${S3_URL}
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
     expose:
-      - "4566"
+      - ${LOCALSTACK_PORT}
     restart: always
 volumes:
   resource-service-db:

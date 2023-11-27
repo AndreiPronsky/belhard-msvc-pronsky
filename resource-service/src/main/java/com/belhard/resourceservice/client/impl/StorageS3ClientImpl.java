@@ -19,7 +19,7 @@ import java.util.NoSuchElementException;
 @RequiredArgsConstructor
 public class StorageS3ClientImpl implements StorageS3Client {
 
-    @Value("${CLIENTS_S3_BUCKET}")
+    @Value("${S3_BUCKET}")
     private String bucket;
     private final S3Client s3Client;
 
