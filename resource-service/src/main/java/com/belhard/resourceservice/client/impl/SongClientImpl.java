@@ -20,7 +20,7 @@ public class SongClientImpl implements SongClient {
 
     private final WebClient webClient;
 
-    @Value("${clients.song-service}")
+    @Value("${SONG_SERVICE_URL}")
     private String songServiceUrl;
 
     @Value("?id=")
