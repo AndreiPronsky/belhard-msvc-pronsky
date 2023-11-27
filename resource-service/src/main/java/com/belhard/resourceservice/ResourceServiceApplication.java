@@ -3,6 +3,7 @@ package com.belhard.resourceservice;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.reactive.function.client.WebClient;
 import software.amazon.awssdk.auth.credentials.AwsBasicCredentials;
@@ -16,6 +17,7 @@ import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 
 @SpringBootApplication
+@EnableDiscoveryClient
 public class ResourceServiceApplication {
 
     @Value("${S3_URL}")

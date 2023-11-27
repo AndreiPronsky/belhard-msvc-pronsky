@@ -1,5 +1,9 @@
 server:
   port: ${SONG_SERVICE_SERVER_PORT}
+eureka:
+  client:
+    service-url:
+      defaultZone: http://discovery-server:8761/eureka
 spring:
   jpa:
     database: POSTGRESQL
@@ -11,3 +15,5 @@ spring:
     username: ${SONG_SERVICE_DB_USERNAME}
     url: ${SONG_SERVICE_DB_URL}
     driver-class-name: org.postgresql.Driver
+  application:
+    name: song-service
