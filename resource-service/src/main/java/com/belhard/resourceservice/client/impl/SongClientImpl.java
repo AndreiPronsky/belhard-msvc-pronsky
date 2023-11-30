@@ -2,9 +2,12 @@ package com.belhard.resourceservice.client.impl;
 
 import com.belhard.resourceservice.client.SongClient;
 import com.belhard.resourceservice.service.dto.MetaDataDto;
+import com.netflix.discovery.EurekaClient;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.client.ServiceInstance;
+import org.springframework.cloud.client.loadbalancer.LoadBalancerClient;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -18,9 +21,11 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class SongClientImpl implements SongClient {
 
+    private final EurekaClient eurekaClient;
     private final WebClient webClient;
+    private final LoadBalancerClient loadBalancerClient;
 
-    @Value("${clients.song-service}")
+    @Value("${SONG_SERVICE_URL}")
     private String songServiceUrl;
 
     @Value("?id=")
@@ -28,8 +33,11 @@ public class SongClientImpl implements SongClient {
 
     @Override
     public void create(MetaDataDto metaDataDto) {
+        eurekaClient.getApplication(songServiceUrl).getInstances().forEach(i ->
+                log.info(i.getInstanceId()));
         String response = webClient.post()
-                .uri(songServiceUrl)
+                .uri(getServiceInstance()
+                        .getUri())
                 .bodyValue(metaDataDto)
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
@@ -41,7 +49,7 @@ public class SongClientImpl implements SongClient {
     @Override
     public void deleteByIds(List<Long> resourceIds) {
         String response = webClient.delete()
-                .uri(buildUri(resourceIds))
+                .uri(buildUriForDelete(resourceIds))
                 .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)
                 .retrieve()
                 .bodyToMono(String.class)
@@ -49,8 +57,12 @@ public class SongClientImpl implements SongClient {
         log.info(response);
     }
 
-    private String buildUri(List<Long> ids) {
+    private String buildUriForDelete(List<Long> ids) {
         String values = ids.stream().map(String::valueOf).collect(Collectors.joining(","));
-        return songServiceUrl + endpoint + values;
+        return getServiceInstance().getUri() + endpoint + values;
+    }
+
+    private ServiceInstance getServiceInstance() {
+        return loadBalancerClient.choose(songServiceUrl);
     }
 }

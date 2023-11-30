@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 @Entity
@@ -20,23 +19,20 @@ public class Resource {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Lob
-    @Column(name = "audio")
-    private byte[] audio;
+    @Column(name = "location")
+    private String location;
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Resource resource = (Resource) o;
-        return Objects.equals(id, resource.id) && Arrays.equals(audio, resource.audio);
+        return Objects.equals(id, resource.id) && Objects.equals(location, resource.location);
     }
 
     @Override
     public int hashCode() {
-        int result = Objects.hash(id);
-        result = 31 * result + Arrays.hashCode(audio);
-        return result;
+        return Objects.hash(id, location);
     }
 
     @Override
