@@ -3,7 +3,17 @@ services:
   resource-service:
     build: resource-service
     ports:
-      - "7002:${RESOURCE_SERVICE_SERVER_PORT}"
+      - "7002:8080"
+    environment:
+      - RESOURCE_SERVICE_SERVER_PORT=${RESOURCE_SERVICE_SERVER_PORT}
+      - RESOURCE_SERVICE_DB_PASSWORD=${RESOURCE_SERVICE_DB_PASSWORD}
+      - RESOURCE_SERVICE_DB_USERNAME=${RESOURCE_SERVICE_DB_USERNAME}
+      - RESOURCE_SERVICE_DB_URL=${RESOURCE_SERVICE_DB_URL}
+      - SONG_SERVICE_URL=${SONG_SERVICE_URL}
+      - S3_URL=${S3_URL}
+      - S3_BUCKET=${S3_BUCKET}
+      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
+      - S3_SECRET_KEY=${S3_SECRET_KEY}
     depends_on:
       - resource-service-db
       - discovery-server
@@ -12,21 +22,20 @@ services:
     build: song-service
     expose:
     - "8080"
+    environment:
+      - SONG_SERVICE_SERVER_PORT=${SONG_SERVICE_SERVER_PORT}
+      - SONG_SERVICE_DB_PASSWORD=${SONG_SERVICE_DB_PASSWORD}
+      - SONG_SERVICE_DB_USERNAME=${SONG_SERVICE_DB_USERNAME}
+      - SONG_SERVICE_DB_URL=${SONG_SERVICE_DB_URL}
     depends_on:
       - song-service-db
       - discovery-server
     restart: always
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 2
   resource-service-db:
     image: postgres
-    environment:
-      - RESOURCE_SERVICE_SERVER_PORT=${RESOURCE_SERVICE_SERVER_PORT}
-      - RESOURCE_SERVICE_DB_PASSWORD=${RESOURCE_SERVICE_DB_PASSWORD}
-      - RESOURCE_SERVICE_DB_USERNAME=${RESOURCE_SERVICE_DB_USERNAME}
-      - RESOURCE_SERVICE_DB_URL=${RESOURCE_SERVICE_DB_URL}
-      - SONG_SERVICE_URL=${SONG_SERVICE_URL}
     expose:
       - ${RESOURCE_SERVICE_DB_PORT}
     volumes:
@@ -34,11 +43,6 @@ services:
     restart: always
   song-service-db:
     image: postgres
-    environment:
-      - SONG_SERVICE_SERVER_PORT=${SONG_SERVICE_SERVER_PORT}
-      - SONG_SERVICE_DB_PASSWORD=${SONG_SERVICE_DB_PASSWORD}
-      - SONG_SERVICE_DB_USERNAME=${SONG_SERVICE_DB_USERNAME}
-      - SONG_SERVICE_DB_URL=${SONG_SERVICE_DB_URL}
     expose:
       - ${SONG_SERVICE_DB_PORT}
     volumes:
@@ -46,11 +50,6 @@ services:
     restart: always
   localstack:
     image: localstack/localstack
-    environment:
-      - S3_URL=${S3_URL}
-      - S3_BUCKET=${S3_BUCKET}
-      - S3_ACCESS_KEY=${S3_ACCESS_KEY}
-      - S3_SECRET_KEY=${S3_SECRET_KEY}
     expose:
       - ${LOCALSTACK_PORT}
     restart: always

@@ -11,7 +11,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/songs")
+@RequestMapping
 @RequiredArgsConstructor
 public class SongController {
 

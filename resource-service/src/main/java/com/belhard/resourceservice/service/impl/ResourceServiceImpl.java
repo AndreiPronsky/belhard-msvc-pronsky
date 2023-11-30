@@ -35,7 +35,7 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public ResourceIdDto upload(byte[] data) {
-        String key = String.valueOf(Arrays.hashCode(data)).substring(0, 20);
+        String key = String.valueOf(Arrays.hashCode(data));
         String location = folder + key;
         s3Client.upload(data, location);
         Resource resource = resourceRepository.save(mapper.toEntity(location));
@@ -59,14 +59,11 @@ public class ResourceServiceImpl implements ResourceService {
 
     @Override
     public ResourceIdsDto delete(List<Long> ids) {
-        resourceRepository.deleteAllById(ids);
-        songClient.deleteByIds(ids);
-        for (Long id : ids) {
-            String location = resourceRepository.findById(id)
-                    .orElseThrow(NoSuchElementException::new)
-                    .getLocation();
-            s3Client.delete(location);
+        for (Resource resource : resourceRepository.findAllById(ids)) {
+            s3Client.delete(resource.getLocation());
         }
+        songClient.deleteByIds(ids);
+        resourceRepository.deleteAllById(ids);
         return mapper.toDto(ids);
     }
 }
